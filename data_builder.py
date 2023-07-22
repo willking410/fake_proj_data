@@ -53,7 +53,7 @@ data3 = []
 
 # BUILD BASE INFO TABLE
     
-for i in range (10):
+for i in range (50):
     myData = [getInitiative(inits), (i+1), getMgr(mgrs)\
               , getStartDate(startYears).strftime('%m-%Y')]
     data1.append(myData)
@@ -68,6 +68,7 @@ for index, row in projBaseInfo.iterrows():
     myMonth = row['StartDate'].split("-")[0]
     myYear = row['StartDate'].split("-")[1]
     base = budgets[np.random.randint(0,len(budgets))]
+    
     for i in range (int(myYear),2023):
         myBudget = base * np.random.randint(85,115) / 100
         if i == int(myYear):
@@ -91,19 +92,23 @@ for index, row in projAnnualInfo.iterrows():
     myYear = myStart.split("-")[1]
     myAnnual = int(projAnnualInfo.loc[(projAnnualInfo['ProjID'] == row['ProjID']) \
                        & (projAnnualInfo['Year'] == int(myYear)),['AnnualBudget']].values[0][0])
+    
     # if start year, start a month index
-    print(row['Year'], myAnnual)
+    #print(row['ProjID'], row['Year'], myAnnual)
+    startMonth = 1
+    
     if int(row['Year']) == int(myYear):
-        #print(myMonth)
-        for i in range(int(myMonth),13):
-            print(i, myAnnual/12)
-            continue
-    else:
-        continue
-    # else do full year
-    break
+        startMonth = int(myMonth)
+    
+    for i in range(startMonth,13):
+        mySpend = round(myAnnual / 12 * (np.random.randint(90,105) / 100),-1)
+        myData = [row['ProjID'], myYear, i, int(mySpend)]
+        data3.append(myData)
 
 
+projMonthlyInfo = pd.DataFrame(data3, columns=['ProjID', 'Year', 'Month','Spend'])
+
+print(projMonthlyInfo)
 
 
 
