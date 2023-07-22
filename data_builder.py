@@ -94,7 +94,6 @@ for index, row in projAnnualInfo.iterrows():
                        & (projAnnualInfo['Year'] == int(myYear)),['AnnualBudget']].values[0][0])
     
     # if start year, start a month index
-    #print(row['ProjID'], row['Year'], myAnnual)
     startMonth = 1
     
     if int(row['Year']) == int(myYear):
@@ -105,21 +104,10 @@ for index, row in projAnnualInfo.iterrows():
         myData = [row['ProjID'], myYear, i, int(mySpend)]
         data3.append(myData)
 
-
 projMonthlyInfo = pd.DataFrame(data3, columns=['ProjID', 'Year', 'Month','Spend'])
 
-print(projMonthlyInfo)
+# EXPORT TABLES TO CSV
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+projBaseInfo.to_csv('projBaseInfo')
+projAnnualInfo.to_csv('projAnnualInfo')
+projMonthlyInfo.to_csv('projMonthlyInfo')
