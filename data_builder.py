@@ -108,6 +108,6 @@ projMonthlyInfo = pd.DataFrame(data3, columns=['ProjID', 'Year', 'Month','Spend'
 
 # EXPORT TABLES TO CSV
 
-projBaseInfo.to_csv('projBaseInfo')
-projAnnualInfo.to_csv('projAnnualInfo')
-projMonthlyInfo.to_csv('projMonthlyInfo')
+projBaseInfo.to_csv('projBaseInfo', index = False)
+projAnnualInfo.to_csv('projAnnualInfo', index = False)
+projMonthlyInfo.to_csv('projMonthlyInfo', index = False)
