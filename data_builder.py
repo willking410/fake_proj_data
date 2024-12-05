@@ -106,8 +106,60 @@ for index, row in projAnnualInfo.iterrows():
 
 projMonthlyInfo = pd.DataFrame(data3, columns=['ProjID', 'Year', 'Month','Spend'])
 
+"""
 # EXPORT TABLES TO CSV
 
 projBaseInfo.to_csv('projBaseInfo', index = False)
 projAnnualInfo.to_csv('projAnnualInfo', index = False)
 projMonthlyInfo.to_csv('projMonthlyInfo', index = False)
+"""
+
+
+# EXPORT TABLES TO EXCEL
+
+# create a excel writer object
+with pd.ExcelWriter("C:/Users/willk/OneDrive/Desktop/GitHub/fake_proj_data/fake_proj_data_Excel.xlsx") as writer:
+   
+    # use to_excel function and specify the sheet_name and index 
+    # to store the dataframe in specified sheet
+    projBaseInfo.to_excel(writer, sheet_name="projBaseInfo", index=False)
+    projAnnualInfo.to_excel(writer, sheet_name="projAnnualInfo", index=False)
+    projMonthlyInfo.to_excel(writer, sheet_name="projMonthlyInfo", index=False)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
